@@ -1,7 +1,7 @@
 import React from "react";
 
-function TransformationsPage() {
+const TransformationsPage = () => {
   return <div>TransformationsPage</div>;
-}
+};
 
 export default TransformationsPage;
