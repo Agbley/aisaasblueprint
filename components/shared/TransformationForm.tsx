@@ -45,7 +45,7 @@ export const formSchema = z.object({
   publicId: z.string(),
 });
 
- const TransformationForm = ({
+const TransformationForm = ({
   action,
   data = null,
   userId,
@@ -119,24 +119,25 @@ export const formSchema = z.object({
           console.log(error);
         }
       }
-      if(action==='Upadate'){
-      try {
+      if (action === "Upadate") {
+        try {
           const updatedImage = await updateImage({
-            image: {...imageData,_id:data._id},
+            image: { ...imageData, _id: data._id },
             userId,
             path: `/transformations/${data._id}`,
           });
           if (updatedImage) {
             form.reset();
-            
+
             router.push(`/transformations/${updatedImage._id}`);
           }
         } catch (error) {
           console.log(error);
         }
+      }
     }
+    setIsSubmitting(false);
   }
-  setIsSubmitting(false);
   const onSelectFieldHandler = (
     value: string,
     onChangeField: (value: string) => void
@@ -165,8 +166,8 @@ export const formSchema = z.object({
           [fieldName === "prompt" ? "prompt" : "to"]: value,
         },
       }));
-      return onChangeField(value);
     }, 1000);
+    return onChangeField(value);
   };
   // TODO: Update creditFee to something else
   const onTransformHandler = async () => {
