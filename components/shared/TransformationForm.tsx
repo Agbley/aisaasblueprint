@@ -42,6 +42,7 @@ export const formSchema = z.object({
   title: z.string(),
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
+  prompt: z.string().optional(),
   publicId: z.string(),
 });
 
@@ -81,7 +82,7 @@ const TransformationForm = ({
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     if (data || image) {
       const transformationUrl = getCldImageUrl({
@@ -119,7 +120,7 @@ const TransformationForm = ({
           console.log(error);
         }
       }
-      if (action === "Upadate") {
+      if (action === "Update") {
         try {
           const updatedImage = await updateImage({
             image: { ...imageData, _id: data._id },
@@ -137,7 +138,7 @@ const TransformationForm = ({
       }
     }
     setIsSubmitting(false);
-  }
+  };
   const onSelectFieldHandler = (
     value: string,
     onChangeField: (value: string) => void
