@@ -4,7 +4,7 @@ export interface IImage extends Document {
   title: string;
   transformationType: string;
   publicId: string;
-  secureUrl: string; // Assuming URL is stored as a string
+  secureURL: string; // Assuming URL is stored as a string
   width?: number;
   height?: number;
   config?: object; // Consider defining a more specific interface if the config shape is known
@@ -14,7 +14,7 @@ export interface IImage extends Document {
   prompt?: string;
   author: {
     _id: string;
-    firstNAme: string;
+    firstName: string;
     lastName: string;
   }; // Assuming the ObjectId is represented as a string in TypeScript
   createdAt?: Date;
@@ -23,13 +23,13 @@ export interface IImage extends Document {
 
 const ImageSchema = new Schema({
   title: { type: String, required: true },
-  transformatonType: { type: String, required: true },
+  transformationType: { type: String, required: true },
   publicId: { type: String, required: true },
-  secureUrl: { type: URL, required: true },
+  secureURL: { type: String, required: true },
   width: { type: Number },
   height: { type: Number },
   config: { type: Object },
-  transformationUrl: { type: URL, required: true },
+  transformationUrl: { type: String },
   aspectRatio: { type: String },
   color: { type: String },
   author: { type: Schema.Types.ObjectId, ref: "User" },
